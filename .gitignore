@@ -30,5 +30,3 @@ coverage/
 *.log
 npm-debug.log*
 pnpm-debug.log*
-.changeset/*.md
-!.changeset/config.json
