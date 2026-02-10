@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+  <!-- Hat crown (dome) -->
+  <path d="M160 200 C160 130, 352 130, 352 200 Z"/>
+  <!-- Hat brim -->
+  <ellipse cx="256" cy="205" rx="160" ry="30"/>
+  <!-- Face area -->
+  <path d="M150 220 C150 220, 158 300, 256 300 C354 300, 362 220, 362 220 C340 215, 172 215, 150 220Z"/>
+  <!-- Left eye slit -->
+  <polygon points="178,250 248,244 248,264 178,272" fill="white"/>
+  <!-- Right eye slit -->
+  <polygon points="264,244 334,250 334,272 264,264" fill="white"/>
+  <!-- Collar / coat body -->
+  <path d="M140 320 C130 340, 128 380, 160 410 C192 435, 230 442, 256 444 C282 442, 320 435, 352 410 C384 380, 382 340, 372 320 C360 308, 310 298, 256 302 C202 298, 152 308, 140 320Z"/>
+  <!-- Collar V-notch -->
+  <polygon points="236,302 256,390 276,302" fill="white"/>
+</svg>

@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@spectre-ui/core/styles.css";
+
+/* Docs-specific styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--spectre-font-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global grid pattern overlay — applied to the theme wrapper so it's not covered by its background-color */
+[data-spectre-theme="dark"] {
+  background-image:
+    linear-gradient(to right, rgba(14, 165, 233, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 165, 233, 0.12) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+}
+
+[data-spectre-theme="light"] {
+  background-image:
+    linear-gradient(to right, rgba(2, 132, 199, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(2, 132, 199, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+}
+
+/* Prose styles for docs content */
+.docs-prose {
+  font-family: var(--spectre-font-sans);
+}
+
+.docs-prose h1,
+.docs-prose h2,
+.docs-prose h3,
+.docs-prose h4 {
+  font-family: var(--spectre-font-mono);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.docs-prose h1 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+.docs-prose h2 { font-size: 1.25rem; margin-top: 1.75rem; margin-bottom: 0.75rem; }
+.docs-prose h3 { font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+
+.docs-prose p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.docs-prose code {
+  font-family: var(--spectre-font-mono);
+  font-size: 0.875em;
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--spectre-border);
+  background: var(--spectre-muted);
+}
+
+.docs-prose pre {
+  margin: 1rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--spectre-border);
+  background: var(--spectre-muted);
+  font-size: 0.875rem;
+}
+
+.docs-prose a {
+  color: var(--spectre-primary);
+  text-decoration: none;
+}
+
+.docs-prose a:hover {
+  text-decoration: underline;
+}
+
+.docs-prose ul, .docs-prose ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.docs-prose li {
+  margin-bottom: 0.25rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--spectre-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--spectre-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--spectre-primary);
+}
+
+/* Scanline animation for hero */
+@keyframes scanline-hero {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(500%); }
+}
+
+/* Code block line numbers */
+.code-block {
+  counter-reset: line;
+}
+
+.code-block .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: var(--spectre-muted-foreground);
+  opacity: 0.5;
+}

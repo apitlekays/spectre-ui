@@ -1,0 +1,28 @@
+{
+  "name": "spectre-ui",
+  "private": true,
+  "version": "0.0.0",
+  "description": "FUI React Component Framework - Futuristic UI for modern web applications",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:a11y": "turbo run test:a11y",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md,mdx,json}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter='./packages/*' && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "prettier": "^3.2.0",
+    "turbo": "^2.3.0"
+  },
+  "packageManager": "pnpm@10.29.2",
+  "engines": {
+    "node": ">=18"
+  }
+}

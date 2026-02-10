@@ -1,0 +1,41 @@
+{
+  "name": "@spectre-ui/tailwind-config",
+  "version": "1.0.0",
+  "description": "Shared Tailwind CSS config and plugin for spectre-ui",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./plugin": {
+      "types": "./dist/plugin.d.ts",
+      "import": "./dist/plugin.mjs",
+      "require": "./dist/plugin.js"
+    },
+    "./preset": {
+      "types": "./dist/preset.d.ts",
+      "import": "./dist/preset.mjs",
+      "require": "./dist/preset.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "@spectre-ui/tsconfig": "workspace:*",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0"
+  },
+  "files": ["dist"],
+  "license": "MIT"
+}

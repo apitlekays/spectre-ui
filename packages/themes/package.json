@@ -1,0 +1,28 @@
+{
+  "name": "@spectre-ui/themes",
+  "version": "1.0.0",
+  "description": "Theme presets for spectre-ui",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@spectre-ui/tsconfig": "workspace:*",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0"
+  },
+  "files": ["dist"],
+  "license": "MIT"
+}
