@@ -1,6 +1,6 @@
 {
   "name": "@spectre-ui/mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for spectre-ui — gives AI coding assistants access to full framework documentation",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -32,7 +32,16 @@
     "typescript": "^5.5.0",
     "vitest": "^3.0.0"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
-  "keywords": ["mcp", "spectre-ui", "ai", "claude", "cursor", "documentation"]
+  "keywords": [
+    "mcp",
+    "spectre-ui",
+    "ai",
+    "claude",
+    "cursor",
+    "documentation"
+  ]
 }
