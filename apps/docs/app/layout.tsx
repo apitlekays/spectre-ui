@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import {
@@ -8,6 +9,8 @@ import {
 } from "@/components/JsonLd";
 import { SITE_CONFIG } from "@/lib/seo-data";
 import "./globals.css";
+
+const GA_ID = "G-XVZZ4Q8FCG";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -109,6 +112,18 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
         <WebSiteSchema />
         <OrganizationSchema />
         <SoftwareApplicationSchema />
