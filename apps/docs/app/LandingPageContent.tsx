@@ -12,6 +12,7 @@ import {
   TabsTrigger,
   TabsContent,
 } from "@spectre-ui/core";
+import { version } from "@spectre-ui/core/package.json";
 
 const features = [
   {
@@ -61,7 +62,7 @@ export default function LandingPageContent() {
       <SystemTicker
         messages={[
           "sys.status: online",
-          "framework.version: 1.0.0",
+          `framework.version: ${version}`,
           "components.count: 35",
           "sec.level: classified",
           "theme.active: cyber-dark",
@@ -81,7 +82,7 @@ export default function LandingPageContent() {
 
             {/* HUD Badge */}
             <Badge variant="primary" dot className="mb-6">
-              v1.0.0 — Now Available
+              v{version} — Now Available
             </Badge>
 
             {/* Logo */}
@@ -348,7 +349,7 @@ function App() {
               </span>
               <span className="flex items-center gap-1">
                 <span className="h-1.5 w-1.5 bg-spectre-primary animate-pulse" />
-                v1.0.0
+                v{version}
               </span>
             </div>
           </div>
