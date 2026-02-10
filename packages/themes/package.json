@@ -1,6 +1,6 @@
 {
   "name": "@spectre-ui/themes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Theme presets for spectre-ui",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -23,6 +23,8 @@
     "tsup": "^8.0.0",
     "typescript": "^5.5.0"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "license": "MIT"
 }
