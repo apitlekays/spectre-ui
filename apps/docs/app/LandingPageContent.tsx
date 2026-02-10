@@ -7,6 +7,10 @@ import {
   Badge,
   SystemTicker,
   ScanBeam,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
 } from "@spectre-ui/core";
 
 const features = [
@@ -171,6 +175,108 @@ export default function LandingPageContent() {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* MCP Section */}
+      <section className="border-t border-spectre-border">
+        <div className="mx-auto max-w-5xl px-4 py-20">
+          <div className="mb-12 text-center">
+            <div className="mb-4 flex items-center justify-center gap-2 text-xs font-mono text-spectre-primary">
+              <span className="h-2 w-2 bg-spectre-primary animate-pulse" />
+              <span className="uppercase tracking-widest">MCP Ready</span>
+            </div>
+            <h2 className="text-2xl font-bold uppercase tracking-widest text-spectre-foreground">
+              AI-Powered Development
+            </h2>
+            <p className="mt-2 max-w-xl mx-auto text-spectre-muted-foreground">
+              Ship faster with our MCP server. Your AI coding assistant gets full access to
+              spectre-ui docs, component APIs, design tokens, and prompt templates.
+            </p>
+          </div>
+
+          <div className="relative border border-spectre-border bg-spectre-secondary/30 p-6">
+            {/* HUD corners */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-spectre-primary" />
+            <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-spectre-primary" />
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-spectre-primary" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-spectre-primary" />
+
+            <Tabs defaultValue="claude-code">
+              <TabsList>
+                <TabsTrigger value="claude-code">Claude Code</TabsTrigger>
+                <TabsTrigger value="cursor">Cursor</TabsTrigger>
+                <TabsTrigger value="claude-desktop">Claude Desktop</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="claude-code">
+                <p className="mb-3 text-xs font-mono text-spectre-muted-foreground uppercase tracking-wider">
+                  .mcp.json <span className="text-spectre-primary/60">// project root</span>
+                </p>
+                <div className="border border-spectre-border bg-spectre-muted p-4">
+                  <pre className="overflow-x-auto text-sm text-spectre-foreground">
+                    <code>{`{
+  "mcpServers": {
+    "spectre-ui": {
+      "command": "npx",
+      "args": ["-y", "@spectre-ui/mcp"]
+    }
+  }
+}`}</code>
+                  </pre>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="cursor">
+                <p className="mb-3 text-xs font-mono text-spectre-muted-foreground uppercase tracking-wider">
+                  .cursor/mcp.json
+                </p>
+                <div className="border border-spectre-border bg-spectre-muted p-4">
+                  <pre className="overflow-x-auto text-sm text-spectre-foreground">
+                    <code>{`{
+  "mcpServers": {
+    "spectre-ui": {
+      "command": "npx",
+      "args": ["-y", "@spectre-ui/mcp"]
+    }
+  }
+}`}</code>
+                  </pre>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="claude-desktop">
+                <p className="mb-3 text-xs font-mono text-spectre-muted-foreground uppercase tracking-wider">
+                  claude_desktop_config.json
+                </p>
+                <div className="border border-spectre-border bg-spectre-muted p-4">
+                  <pre className="overflow-x-auto text-sm text-spectre-foreground">
+                    <code>{`{
+  "mcpServers": {
+    "spectre-ui": {
+      "command": "npx",
+      "args": ["-y", "@spectre-ui/mcp"]
+    }
+  }
+}`}</code>
+                  </pre>
+                </div>
+              </TabsContent>
+            </Tabs>
+
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-6 text-[10px] font-mono text-spectre-muted-foreground uppercase">
+                <span>59 resources</span>
+                <span>7 prompt templates</span>
+                <span>38 component docs</span>
+              </div>
+              <Link href="/docs/mcp">
+                <Button variant="outline" size="sm">
+                  View Full MCP Docs
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
