@@ -120,6 +120,20 @@ export const PAGE_METADATA: Record<string, PageSEO> = {
     ],
     category: "guide",
   },
+  "/docs/mcp": {
+    title: "MCP Server",
+    description:
+      "Give AI coding assistants like Claude Code, Cursor, and Claude Desktop full access to spectre-ui documentation via the Model Context Protocol server.",
+    keywords: [
+      "spectre-ui MCP",
+      "Model Context Protocol",
+      "AI coding assistant",
+      "Claude Code spectre-ui",
+      "Cursor MCP server",
+      "spectre-ui documentation API",
+    ],
+    category: "guide",
+  },
 
   // ── Components ──────────────────────────────────────
   "/docs/components/alert": {

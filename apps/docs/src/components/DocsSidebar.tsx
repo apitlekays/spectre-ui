@@ -18,6 +18,7 @@ const navigation: NavItem[] = [
       { title: "Installation", href: "/docs/installation" },
       { title: "Theming", href: "/docs/theming" },
       { title: "Design Brief", href: "/docs/design-brief" },
+      { title: "MCP Server", href: "/docs/mcp" },
     ],
   },
   {
