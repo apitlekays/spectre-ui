@@ -4,6 +4,11 @@ import { PAGE_METADATA, SITE_CONFIG } from "@/lib/seo-data";
 
 export const runtime = "edge";
 
+// Logo SVG with cyan fill (#0ea5e9), base64-encoded for Satori compatibility.
+// The original /public/agentUI.svg is not modified.
+const LOGO_DATA_URI =
+  "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iMzg2LjAwMDAwMHB0IiBoZWlnaHQ9IjM1NS4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDM4Ni4wMDAwMDAgMzU1LjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwzNTUuMDAwMDAwKSBzY2FsZSgwLjA1MDAwMCwtMC4wNTAwMDApIgpmaWxsPSIjMGVhNWU5IiBzdHJva2U9Im5vbmUiPgo8cGF0aCBkPSJNMzM3MCA2NTM5IGMtNTUxIC02MiAtODQ5IC0yMDAgLTkzNyAtNDM0IC0xMDAgLTI2NCAtMjkyIC04MzIgLTI4NAotODQwIDQgLTUgOTkgLTE4IDIxMSAtMzEgbDIwNCAtMjIgLTEyIC05MSBjLTQwIC0yOTEgLTUzIC0zMzUgLTk5IC0zMjkgLTIzIDMKLTE3NiAyNiAtMzM4IDUwIGwtMjk0IDQ1IC0yMDYgLTU1IGMtNzgzIC0yMTAgLTcxNCAtNDc2IDE4MSAtNjkzIGw4NiAtMjEgLTYKLTE1MSAtNiAtMTUwIC0yNjQgLTY4IGMtNTk4IC0xNTMgLTY4NyAtMjkxIC0zMTAgLTQ4MiA1NjIgLTI4NCAyMDIxIC00MzcKMzMxNyAtMzQ4IDQwNiAyOCA0MzIgMjMgMTkyIC0zNSAtNjk5IC0xNzEgLTIyODggLTI1OCAtMzEwNCAtMTY5IC0xMTYgMTMKLTIxMiAyMSAtMjE1IDE4IC0yIC0zIDY0IC0xMjQgMTQ3IC0yNzEgODMgLTE0NiAxNDQgLTI3MiAxMzQgLTI4MSAtOSAtOCAtMTA5Ci04NSAtMjIyIC0xNzEgLTI0NSAtMTg2IC0yNDAgLTE0NiAtNDAgLTM0NCAxMjQ5IC0xMjM0IDMyODEgLTEyMzQgNDUzMCAwIDIwMAoxOTggMjA1IDE1OSAtNDAgMzQ1IC0xMTMgODYgLTIxMyAxNjIgLTIyMyAxNzEgLTE5IDE3IC0zNCAtMTAgMzk3IDczNSAzOTQKNjgyIDM5NiA2NzQgLTIzOSA4MzQgbC0yNjAgNjUgLTYgMTUxIC02IDE1MSA4NiAyMSBjODkzIDIxOSA5NjQgNDgxIDE4NyA2OTIKLTIxMiA1NyAtMjA2IDU3IC01NzEgMCAtNTE2IC03OSAtMTI4NyAtMTE5IC0xOTQ3IC0xMDAgbC00NzggMTQgMTMgOTIgYzcgNTEKMjIgMTQ3IDMzIDIxMyBsMjEgMTIwIDYwNCAtNyBjNjkwIC04IDE3MzYgNTIgMTc4NyAxMDMgOSA5IC0yODcgODY1IC0zMjQgOTM2Ci0xMjQgMjQwIC0xMDA4IDQxNiAtMTY5OSAzMzd6IG0tMTIwIC0yNTU3IGwzMDAgLTEyIDcgLTYwIGMzMyAtMjg1IC0xMzMgLTQzMAotNDg3IC00MzAgLTM4OSAyIC01OTAgMTUzIC01OTAgNDQ3IGwwIDk4IDIzNSAtMTUgYzEyOSAtOSAzNzAgLTIxIDUzNSAtMjh6Cm0xODEwIC02MCBjMCAtMjc0IC0xODMgLTQyNyAtNTI0IC00MzkgLTQxNCAtMTQgLTU4OCAxMjAgLTU1MyA0MjggbDcgNTkgMzcwCjE0IGMyMDMgOCAzODggMTggNDEwIDIyIDIyIDUgOTYgMTAgMTY1IDExIGwxMjUgMyAwIC05OHoiLz4KPC9nPgo8L3N2Zz4K";
+
 function truncate(str: string, max: number): string {
   if (str.length <= max) return str;
   return str.slice(0, max - 1) + "\u2026";
@@ -108,13 +113,14 @@ export async function GET(request: Request) {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "4px",
+                gap: "12px",
                 fontSize: 20,
                 fontWeight: 700,
                 letterSpacing: "0.15em",
                 color: "#e2e8f0",
               }}
             >
+              <img src={LOGO_DATA_URI} alt="" width={36} height={36} />
               SPECTRE_
               <span style={{ color: "#0ea5e9" }}>UI</span>
             </div>
