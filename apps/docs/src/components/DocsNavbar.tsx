@@ -4,12 +4,28 @@ import React from "react";
 import Link from "next/link";
 import { useSpectreTheme, Button } from "@spectre-ui/core";
 
-export function DocsNavbar() {
+interface DocsNavbarProps {
+  onMenuToggle?: () => void;
+}
+
+export function DocsNavbar({ onMenuToggle }: DocsNavbarProps) {
   const { theme, toggleTheme } = useSpectreTheme();
 
   return (
     <nav className="sticky top-0 z-50 flex h-14 items-center justify-between border-b border-spectre-border bg-spectre-background/95 px-4 font-mono backdrop-blur-sm">
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-4">
+        {/* Mobile menu toggle */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="lg:hidden"
+          onClick={onMenuToggle}
+          aria-label="Toggle sidebar"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M2 4h12M2 8h12M2 12h12" />
+          </svg>
+        </Button>
         <Link
           href="/"
           className="text-sm font-bold uppercase tracking-widest text-spectre-primary"

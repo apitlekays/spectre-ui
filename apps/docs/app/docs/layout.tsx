@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { DocsNavbar } from "@/components/DocsNavbar";
 import { DocsSidebar } from "@/components/DocsSidebar";
 
@@ -7,11 +9,13 @@ export default function DocsLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="min-h-screen">
-      <DocsNavbar />
+      <DocsNavbar onMenuToggle={() => setSidebarOpen((o) => !o)} />
       <div className="flex">
-        <DocsSidebar />
+        <DocsSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <main className="flex-1 overflow-auto">
           <div className="mx-auto max-w-4xl px-6 py-10">
             {children}

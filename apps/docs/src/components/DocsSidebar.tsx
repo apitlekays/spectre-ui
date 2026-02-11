@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -106,55 +106,85 @@ const navigation: NavItem[] = [
   },
 ];
 
-export function DocsSidebar() {
+interface DocsSidebarProps {
+  open?: boolean;
+  onClose?: () => void;
+}
+
+export function DocsSidebar({ open, onClose }: DocsSidebarProps) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
+
+  // Close mobile sidebar on navigation
+  useEffect(() => {
+    onClose?.();
+  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleSection = (title: string) => {
     setCollapsed((prev) => ({ ...prev, [title]: !prev[title] }));
   };
 
-  return (
-    <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-64 shrink-0 overflow-y-auto border-r border-spectre-border bg-spectre-muted/30 p-4 lg:block">
-      <nav className="space-y-6">
-        {navigation.map((section) => (
-          <div key={section.title}>
-            <button
-              onClick={() => toggleSection(section.title)}
-              className="flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest text-spectre-muted-foreground hover:text-spectre-foreground transition-colors"
+  const sidebarContent = (
+    <nav className="space-y-6">
+      {navigation.map((section) => (
+        <div key={section.title}>
+          <button
+            onClick={() => toggleSection(section.title)}
+            className="flex w-full items-center justify-between text-xs font-semibold uppercase tracking-widest text-spectre-muted-foreground hover:text-spectre-foreground transition-colors"
+          >
+            {section.title}
+            <svg
+              width="10"
+              height="10"
+              viewBox="0 0 10 10"
+              fill="none"
+              className={`transition-transform ${collapsed[section.title] ? "" : "rotate-90"}`}
             >
-              {section.title}
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="none"
-                className={`transition-transform ${collapsed[section.title] ? "" : "rotate-90"}`}
-              >
-                <path d="M3 1L7 5L3 9" stroke="currentColor" strokeWidth="1.5" />
-              </svg>
-            </button>
-            {!collapsed[section.title] && section.items && (
-              <ul className="mt-2 space-y-1 border-l border-spectre-border pl-3">
-                {section.items.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href!}
-                      className={`block py-1 text-sm transition-colors ${
-                        pathname === item.href
-                          ? "text-spectre-primary font-medium"
-                          : "text-spectre-muted-foreground hover:text-spectre-foreground"
-                      }`}
-                    >
-                      {item.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
-      </nav>
-    </aside>
+              <path d="M3 1L7 5L3 9" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </button>
+          {!collapsed[section.title] && section.items && (
+            <ul className="mt-2 space-y-1 border-l border-spectre-border pl-3">
+              {section.items.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href!}
+                    className={`block py-1 text-sm transition-colors ${
+                      pathname === item.href
+                        ? "text-spectre-primary font-medium"
+                        : "text-spectre-muted-foreground hover:text-spectre-foreground"
+                    }`}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </nav>
+  );
+
+  return (
+    <>
+      {/* Desktop sidebar — always visible on lg+ */}
+      <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-64 shrink-0 overflow-y-auto border-r border-spectre-border bg-spectre-muted/30 p-4 lg:block">
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile sidebar — overlay */}
+      {open && (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+            onClick={onClose}
+          />
+          <aside className="fixed top-14 left-0 z-40 h-[calc(100vh-3.5rem)] w-64 overflow-y-auto border-r border-spectre-border bg-spectre-background p-4 lg:hidden">
+            {sidebarContent}
+          </aside>
+        </>
+      )}
+    </>
   );
 }
